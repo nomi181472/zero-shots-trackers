@@ -1,0 +1,23 @@
+# runtime
+runtime/
+output/
+*.pth
+*.cfg.py
+*.mp4
+*.log
+
+# python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# node / next
+frontend/node_modules/
+frontend/.next/
+frontend/next-env.d.ts
+npm-debug.log*
+
+# ide
+.vscode/
+.idea/
