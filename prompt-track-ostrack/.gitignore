@@ -39,9 +39,6 @@ frontend/next-env.d.ts
 npm-debug.log*
 yarn-debug.log*
 
-# third party
-third_party/
-
 # environment & secrets
 .env*
 

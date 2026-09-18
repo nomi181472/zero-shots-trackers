@@ -1,0 +1,34 @@
+model:
+  # Paths are relative to the project root (see download_weights.py / setup.sh).
+  config_path: checkpoints/GroundingDINO_SwinT_OGC.cfg.py
+  weights_path: checkpoints/groundingdino_swint_ogc.pth
+  device: cuda            # or "cpu" (very slow)
+
+detector:
+  box_threshold: 0.35     # min confidence for a (cx,cy,w,h) box -> keep
+  text_threshold: 0.25    # min token logit to consider a phrase matched
+  detect_interval: 1      # run the open-vocab detector every N frames
+
+tracker:
+  name: rag            # rag | bytetrack | sort | iou
+  frame_rate: 30          # source fps; scales the lost-track buffer
+  track_thresh: 0.5       # detections below this score are dropped
+  match_thresh: 0.8       # minimum fused retrieval score to associate
+  track_buffer: 30        # frames a track memory is kept alive while lost
+  min_box_area: 10        # drop detections smaller than this (px^2)
+  fuse_score: true        # weight IoU by detection score (ByteTrack only)
+
+# RAG tracker: retrieval + generation tuning
+rag_tracker:
+  w_appearance: 0.65      # weight of appearance (CLIP / histogram) similarity
+  w_position: 0.35        # weight of positional (IoU with predicted box) prior
+  memory_slots: 16        # appearance embeddings stored per track memory
+  top_k: 8                # retrieval candidates considered per detection
+  # embedder: auto        # auto | clip | histogram  (or ZST_EMBEDDER env)
+  # generator: score      # score | llm | auto       (or ZST_RAG_GENERATOR env)
+
+io:
+  output: output/tracked.mp4
+  show: false             # pop an OpenCV window while tracking
+  max_frames: -1          # -1 = whole video
+  class_map: {}           # optional {phrase: class_label} display names

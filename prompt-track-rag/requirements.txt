@@ -1,0 +1,11 @@
+torch>=2.0.0
+torchvision>=0.15.0
+opencv-python>=4.8.0
+numpy>=1.24
+scipy>=1.10
+Pillow>=10.0
+PyYAML>=6.0
+# RAG tracker retrieval encoder (CLIP); auto-falls back to a torch-free
+# histogram embedder if the model cannot be downloaded.
+transformers>=4.40
+huggingface_hub>=0.20

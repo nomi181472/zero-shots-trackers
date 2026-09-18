@@ -1,0 +1,10 @@
+numpy
+opencv-python
+fastapi
+uvicorn[standard]
+httpx
+
+# Detector-free tracking (choose one or more)
+# ostrack   # when available / installed from source
+# stark-tracking   # when available / installed from source
+# the "mock" backend (template-matching) works without extra packages
